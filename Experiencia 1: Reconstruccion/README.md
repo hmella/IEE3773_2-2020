@@ -73,7 +73,7 @@ Para cargar los datos en Matlab, deben usar la función ```src/readListData```, 
 % carga los datos adquiridos con múltiples bobinas
 K = readListData('data/raw_001');
 ```
-Para los datos de esta experiencia, las dimensiones de ```K``` son <img src="https://latex.codecogs.com/svg.latex?464\times 230\times 2\times 2\times 8" title="K dims" />, las que representan el número de mediciones en la dirección de frecuencia (incluyendo el sobremuestreo), el número de codificaciones de fase, el número de slices, los NSAs y el número de bobinas (comparelos con los valores contenidos en el archivo ```raw_001.list```).
+Para los datos de esta experiencia, las dimensiones de ```K``` son <img src="https://latex.codecogs.com/gif.latex?464\times&space;230\times&space;2\times&space;2\times&space;8" title="464\times 230\times 2\times 2\times 8" />, las que representan el número de mediciones en la dirección de frecuencia (incluyendo el sobremuestreo), el número de codificaciones de fase, el número de slices, los NSAs y el número de bobinas (comparelos con los valores contenidos en el archivo ```raw_001.list```).
 
 
 Corrigiendo el sobremuestreo de los espacios <img src="https://latex.codecogs.com/svg.latex?k" title="k" /> adquiridos por todas las bobinas y graficándolos se obtiene:
