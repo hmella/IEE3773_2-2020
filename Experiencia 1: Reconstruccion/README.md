@@ -103,8 +103,8 @@ donde el vector ```[1 2]``` indica que la operación se debe aplicar en dichas d
     % estima las sensibilidades usando la función gridfit
     Sxy = I./Ib;
     for coil=1:Ncoils
-        Sxy_i = Sxy(:,:,i);
-        S(:,:,coil) = mask_rg.*gridfit(X(mask),Y(mask),Sxy(mask),1:Isz(2),1:Isz(1));
+        Sxy_i = Sxy(:,:,coil);
+        S(:,:,coil) = mask_rg.*gridfit(X(mask),Y(mask),Sxy_i(mask),1:Isz(2),1:Isz(1));
     end
     ```
     Como las sensibilidades deben ser suaves, pruebe cambiando las opciones ```interp```, ```regularizer``` y ```smoothness``` de la función ```gridfit``` (mire la implementación y documentación de la función).
