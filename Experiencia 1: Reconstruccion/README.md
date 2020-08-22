@@ -96,7 +96,7 @@ donde el vector ```[1 2]``` indica que la operación se debe aplicar en dichas d
 
 ## Algunos tips e informaciones para el desarrollo de la experiencia
 * El archivo ```main.m``` contiene todos los ejemplos anteriormente mencionados (y más), y debería ser un buen punto de partida para desarrollar la experiencia.
-* Dentro del mismo archivo hay un pequeño script que les permite obtener la máscara binaria del objeto para la estimación de las inhomogeneidades de campo según el artículo de [Pruessman et al. - 1999](https://github.com/hmella/IEE3773_2-2020/blob/master/Experiencia%201:%20Reconstruccion/bib/Pruessmann_et_al-1999-Magnetic_Resonance_in_Medicine.pdf).
+* Dentro del mismo archivo hay un pequeño script que les permite obtener la máscara binaria del objeto para la estimación de las inhomogeneidades de campo según el artículo de [Pruessman et al. - 1999](https://github.com/hmella/IEE3773_2-2020/blob/master/Experiencia%201:%20Reconstruccion/bib/Pruessmann%20et%20al.%20-%201999%20-%20SENSE%20Sensitivity%20encoding%20for%20fast%20MRI.pdf).
 * Para "extender" la máscara usando *Region Growing* pueden usar una convolución (ver archivo ```main.m```) o cualquier función de Matlab que estimen conveniente (no es necesario que lo implementen de cero).
 * El ajuste polinomial propuesto por Pruessman et al. para crear un mapa de sensibilidad suave, se puede realizar utilizando cualquier función de Matlab (no es necesario que lo implementen ustedes). Pueden usar, por ejemplo, la funcion ```gridfit``` contenida en la carpeta ```src/gridfitdir/``` (ver ejemplo de abajo).
     ```matlab
