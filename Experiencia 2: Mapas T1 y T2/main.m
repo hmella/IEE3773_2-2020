@@ -6,15 +6,16 @@ addpath(genpath('src/'))
 
 %% Generación del fantoma
 % Dominio de la imagen
+Isz = [100 100];
 [X, Y] = meshgrid(linspace(-1,1,Isz(2)),linspace(-1,1,Isz(1)));
 
 % Centros de los cilindros
-C = [-0.5, 0.5; 0.5, 0.5; -0.5, -0.5; 0.5, -0.5];
+xc = [-0.5, 0.5; 0.5, 0.5; -0.5, -0.5; 0.5, -0.5];
 
 % Crea el objeto con los cilindros
 C = false([size(X), 4]);
-for i=1:size(C,1)
-    C(:,:,i) = sqrt((X-C(1,i)).^2 + (Y-C(2,i)).^2) < 0.25;
+for i=1:size(xc,1)
+    C(:,:,i) = sqrt((X-xc(i,1)).^2 + (Y-xc(i,2)).^2) < 0.25;
 end
 
 % Valores T1 y T2 en cada cilindro
@@ -30,9 +31,9 @@ T2(~(sum(C,3))) = 1e+10;
 % Verificación
 figure,
 subplot 121
-imagesc(T1)
+imagesc(T1,'AlphaData',sum(C,3)); caxis([min(t1) max(t1)])
 subplot 122
-imagesc(T2)
+imagesc(T2,'AlphaData',sum(C,3)); caxis([min(t2) max(t2)])
 
 
 %% Imágenes Look-Locker
