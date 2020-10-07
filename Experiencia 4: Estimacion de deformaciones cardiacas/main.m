@@ -79,5 +79,6 @@ Is = abs(I1.*I2);
 Is = Is./max(Is,[],[1 2]);
 
 % Segmentación manual de los datos
+load('dsadas.mat')
 segmentation = getSegmentation(struct('Image',Is,'Phase',phi,...
-                  'Axis',[80 256 80 256]));
+                  'Axis',[80 256 80 256],'Contours',contours));

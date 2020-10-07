@@ -17,7 +17,7 @@ I = metadata.IMAGINARY;     % imágenes de la parte imaginaria
 I2 = R + 1j*I;              % imagen compleja
 ```
 
-<img src="https://github.com/hmella/IEE3773/blob/master/images/Exp_4a.png?raw=true" width="950" height="225">
+<img src="https://github.com/hmella/IEE3773_2-2020/blob/master/images/Exp_4a.png?raw=true" width="950" height="225">
 
 
 
@@ -63,9 +63,9 @@ segmentation = getSegmentation(struct('Image',Is,'Phase',phi,...
 ```
 el cual abrirá una ventana en la cual podrá delinear los contornos del corazón.
 
-<img src="https://github.com/hmella/IEE3773/blob/master/images/Exp_4c.png?raw=true" width="1050" height="600">
+<img src="https://github.com/hmella/IEE3773_2-2020/blob/master/images/Exp_4c.png?raw=true" width="1050" height="600">
 
 ## Algunos tips e informaciones para el desarrollo de la experiencia
-* Para la estimación de los gradientes de la fase armónica, puede utilizar la función ```src/unwrap2.m``` para corregir primero los artefactos de wrapping y después calcular los gradientes, o puede calcularlos directamente utilizando el operador gradiente propuesto en [Osman et al - 1999](https://github.com/hmella/IEE3773/blob/master/Experiencia%204:%20Estimacion%20de%20deformaciones%20cardiacas/bib/Osman%20et%20al.%20-%201999%20-%20Cardiac%20motion%20tracking%20using%20CINE%20harmonic%20phase%20(HARP)%20magnetic%20resonance%20imaging.pdf) (sin necesidad de corregir los artefactos).
+* Para la estimación de los gradientes de la fase armónica, puede utilizar la función ```src/unwrap2.m``` para corregir primero los artefactos de wrapping y después calcular los gradientes, o puede calcularlos directamente utilizando el operador gradiente propuesto en [Osman et al - 1999](https://github.com/hmella/IEE3773_2-2020/blob/master/Experiencia%204:%20Estimacion%20de%20deformaciones%20cardiacas/bib/Osman%20et%20al.%20-%201999%20-%20Cardiac%20motion%20tracking%20using%20CINE%20harmonic%20phase%20(HARP)%20magnetic%20resonance%20imaging.pdf) (sin necesidad de corregir los artefactos).
 * Para la obtención de las deformaciones regionales considere la función del siguiente [link](https://la.mathworks.com/matlabcentral/fileexchange/47454-bullseye-plot-zip).
 * Recuerde que la fase armónica obtenida al filtrar las imágenes se encuentran en radianes, por lo que para obtener las posiciones del tejido deberá utilizar la frecuencia de codificación ```ke``` para obtener las posiciones en metros/milímetros/centímetros.
