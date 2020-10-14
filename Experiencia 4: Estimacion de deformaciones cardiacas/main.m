@@ -80,4 +80,4 @@ Is = Is./max(Is,[],[1 2]);
 
 % Segmentación manual de los datos
 segmentation = getSegmentation(struct('Image',Is,'Phase',phi,...
-                  'Axis',[80 256 80 256],'Contours',contours));
+                  'Axis',[80 256 80 256]));
