@@ -76,7 +76,7 @@ Mz = metadata.Mz;
 
 El resultado del ejemplo anterior, obtenido con el fantoma descrito anteriormente, se muestra en la siguiente figura (cada curva representa la magnetización de cada uno de los cilindros):
 
-<img src="https://github.com/hmella/IEE3773/blob/master/images/P1.png?raw=true" width="950" height="416">
+<img src="https://github.com/hmella/IEE3773_2-2020/blob/master/images/P1.png?raw=true" width="950" height="416">
 
 ## Hints
 Para realizar su proyecto, usted deberá:
