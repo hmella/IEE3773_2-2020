@@ -67,4 +67,4 @@ I = ktoi(K(1:2:end,:,:,:,:), [1,2]);
 I = circshift(I,ky/2,2);
 ```
 Obteniendo las imágenes de abajo para la bobina 4 y todos los segmentos.
-<img src="https://github.com/hmella/IEE3773/blob/master/images/Exp_5a.png?raw=true" width="950" height="450">
+<img src="https://github.com/hmella/IEE3773_2-2020/blob/master/images/Exp_5a.png?raw=true" width="950" height="450">
