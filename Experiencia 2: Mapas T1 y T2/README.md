@@ -52,7 +52,7 @@ En el caso de las adquisiciones ME, el tiempo en el que se adquirió el eco <img
 
 Las imágenes reconstruidas a partir del raw data, adquiridas con la segunda bobina y para cada tiempo de adquisición, se muestran en la figura de abajo.
 
-![](https://github.com/hmella/IEE3773/blob/master/images/exp_2a.png?raw=true)
+![](https://github.com/hmella/IEE3773_2-2020/blob/master/images/exp_2a.png?raw=true)
 
 ### Formato y lectura de las imágenes
 Para leer las imágenes en formato ```DICOM``` puede utilizar las funciones ```dicomread``` y ```dicominfo```, las que entregan la imagen y la información de la adquisición, respectivamente. Adicionalmente, puede usar la función ```src/ReadPhilipsDICOM.m```, la que lee, escala y ordena las imágenes, entregando un objeto ```struct``` con los distintos tipos de imágenes contenidas en el ```DICOM```, además de su información.
@@ -67,7 +67,7 @@ P = metadata.PHASE;         % imágenes de fase
 ```
 En caso de que no exista alguna de los campos solicitados a la función (```'MAGNITUDE'``` o ```'PHASE'```), el resultado será un arreglo vacío. Las imágenes contenidas en el arreglo ```M``` para cada tiempo de adquisición se muestran en la figura de abajo.
 
-![](https://github.com/hmella/IEE3773/blob/master/images/exp_2b.png?raw=true)
+![](https://github.com/hmella/IEE3773_2-2020/blob/master/images/exp_2b.png?raw=true)
 
 ## Algunos tips e informaciones para el desarrollo de la experiencia
 * Para esta experiencia no existe una adquisición con la bobina de cuerpo completo, por lo que para la estimación de las sensibilidades de las bobinas deberá usar la reconstrucción de suma de cuadrados.
@@ -86,7 +86,7 @@ En caso de que no exista alguna de los campos solicitados a la función (```'MAG
   ``` 
   En el script anterior la variable ```width``` representa el ancho del filtro (```width = 0.6``` significa que el filtro, en el espacio K, valdrá 1 en un ancho igual al 60% del tamaño de la imagen), mientras que ```lift``` es la cantidad de señal que permanecerá en el borde (con ```lift = 20``` la señal decaerá a un 20% de su valor en el borde).  Un ejemplo del filtro obtenido con el script anterior se presenta en la siguiente imagen.
 
-  <img src="https://github.com/hmella/IEE3773/blob/master/images/exp_2c.png?raw=true" width="400" height="400">
+  <img src="https://github.com/hmella/IEE3773_2-2020/blob/master/images/exp_2c.png?raw=true" width="400" height="400">
 
 * En caso de que no pueda realizar las reconstrucciones a partir de los ```raw data```, puede utilizar las imágenes contenidas en la carpeta ```data/DICOM```. Sin embargo esta opción recibirá una penalización de 0.5 décimas en la nota final.
 * Los modelos a utilizar para el ajuste de los datos son:
