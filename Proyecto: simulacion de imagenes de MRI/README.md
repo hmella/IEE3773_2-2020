@@ -82,5 +82,5 @@ El resultado del ejemplo anterior, obtenido con el fantoma descrito anteriorment
 
 ## Hints
 Para realizar su proyecto, usted deberá:
-- Implementar los gradientes de codificación de fase y frecuencia (puede empezar por revisar la funcion [```src/simple-MRI/Scan.m```](https://github.com/hmella/IEE3773/blob/master/Proyecto:%20simulacion%20de%20imagenes%20de%20MRI/src/simple-MRI/src/Scan.m)).
+- Implementar los gradientes de codificación de fase y frecuencia (puede empezar por revisar la funcion [```src/simple-MRI/Scan.m```](https://github.com/hmella/IEE3773_2-2020/blob/master/Proyecto:%20simulacion%20de%20imagenes%20de%20MRI/src/simple-MRI/src/Scan.m)).
 - Implementar una función que les permita conocer la posición de cada punto del espacio k y su respectiva medición (vea la descripción de ```kx``` y ```ky``` en el enunciadod el proyecto).

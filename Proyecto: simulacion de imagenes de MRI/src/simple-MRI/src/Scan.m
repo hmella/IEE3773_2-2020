@@ -11,7 +11,7 @@ function metadata = Scan(sequence,varargin)
       'image_coordinates',     [],...
       'show',                  false,...
       'off_resonance',         [],...     % Hz
-      'delta_B0',              []);       % mT
+      'delta_B0',              []);       % mT/m
 
     % Parse inputs
     api = parseinputs(defapi,[],varargin{:});
@@ -96,11 +96,11 @@ function metadata = Scan(sequence,varargin)
             theta_i = 0;
             if ~isempty(api.off_resonance)
                 theta_i = theta_i + ...
-                          2*pi*api.off_resonance*(gradients_h{i}.dur*1000);
+                          2*pi*api.off_resonance*(gradients_h{i}.dur/1000);
             end
             if ~isempty(api.delta_B0)
                 theta_i = theta_i + ...
-                          gamma*delta_B0*(gradients_h{i}.dur*1000);
+                          2*pi*gamma*delta_B0*gradients_h{i}.dur;
             end
             R_z_in = ZRotation(theta_i);
         else
