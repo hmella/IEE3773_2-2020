@@ -3,32 +3,34 @@
 El fantoma a utilizar es similar al de la Experiencia 2, pero en este caso también consideraremos las inhomogeneidades de campo a través de la variable de off-resonance ```df```. Para su generación, puede considerar el siguiente script:
 ```matlab
 % Dominio de la imagen
-Isz = [100 100];
+Isz = [64 64];
 [X, Y] = meshgrid(linspace(-1,1,Isz(2)),linspace(-1,1,Isz(1)));
-P = cat(3,X,Y);
+P = 0.15*cat(3,X,Y); % field of view = [0.3, 0.3] metros
 
-% Centros de los cilindros
-xc = [-0.5, 0.5; 0.5, 0.5; -0.5, -0.5; 0.5, -0.5];
+% Centros y radios de los cilindros
+xc = [0 0; -0.25, 0.25; 0.25, 0.25; -0.25, -0.25; 0.25, -0.25];
+r  = [0.75 0.2 0.2 0.2 0.2];
 
 % Crea el objeto con los cilindros
 C = false([size(X), 4]);
-for i=1:size(xc,1)
-    C(:,:,i) = sqrt((X-xc(i,1)).^2 + (Y-xc(i,2)).^2) < 0.25;
+for i=1:numel(r)
+    C(:,:,i) = sqrt((X-xc(i,1)).^2 + (Y-xc(i,2)).^2) < r(i);
 end
 
 % Valores T1 y T2 en cada cilindro
-T1 = 4000*ones(Isz);
-T2 = 1000*ones(Isz);
-T12 = [1000 1500 850 500 4000; 200 300 50 20 1000];
-for i=1:4
+T1 = zeros(Isz);
+T2 = zeros(Isz);
+T12 = [4000 1000 1500 850 500 250;
+       1000 200  300  50  20  75];
+for i=1:numel(r)
     T1(C(:,:,i)) = T12(1,i);
     T2(C(:,:,i)) = T12(2,i);
 end
 
 % Off-resonance
-off = [0 100 200 300];
+off = [0 5 10 15 20];
 df = zeros(Isz);
-for i=1:4
+for i=1:numel(r)
     df(C(:,:,i)) = off(i);
 end
 ```
