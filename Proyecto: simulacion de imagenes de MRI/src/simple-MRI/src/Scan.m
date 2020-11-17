@@ -5,10 +5,10 @@ function metadata = Scan(sequence,varargin)
       'homogenize_times',      false,...
       'gyromagnetic_constant', 42.58,...  % MHz/T
       'M0',                    1.0,...    
-      'T1',                    850,...    % msec
-      'T2',                    50,...     % msec
+      'T1',                    850,...    % milliseconds
+      'T2',                    50,...     % milliseconds
       'object',                [],...
-      'image_coordinates',     [],...
+      'image_coordinates',     [],...     % meters
       'show',                  false,...
       'off_resonance',         [],...     % Hz
       'delta_B0',              []);       % mT/m
@@ -24,7 +24,7 @@ function metadata = Scan(sequence,varargin)
     T2 = api.T2;
     
     % Gyromagnetic constant
-    gamma = api.gyromagnetic_constant*1e+6;   % Hz/T
+    gamma = api.gyromagnetic_constant;
     
     % Object positions
     P = api.image_coordinates;
@@ -83,7 +83,7 @@ function metadata = Scan(sequence,varargin)
                 dir = gradients_h{i}.dir;
                 amp = gradients_h{i}.amp;
                 dur = gradients_h{i}.dur;
-                theta_gr = (P(:,:,1)*cos(dir) + P(:,:,2)*sin(dir))*(gamma*1e-03*amp*dur);
+                theta_gr = (P(:,:,1)*cos(dir) + P(:,:,2)*sin(dir))*(gamma*amp*dur);
                 R_z_gr = ZRotation(theta_gr);
             end
         else
@@ -96,11 +96,11 @@ function metadata = Scan(sequence,varargin)
             theta_i = 0;
             if ~isempty(api.off_resonance)
                 theta_i = theta_i + ...
-                          2*pi*api.off_resonance*(gradients_h{i}.dur/1000);
+                          2*pi*api.off_resonance*(1e-3*gradients_h{i}.dur);
             end
             if ~isempty(api.delta_B0)
                 theta_i = theta_i + ...
-                          2*pi*gamma*delta_B0*gradients_h{i}.dur;
+                          gamma*delta_B0*gradients_h{i}.dur;
             end
             R_z_in = ZRotation(theta_i);
         else
