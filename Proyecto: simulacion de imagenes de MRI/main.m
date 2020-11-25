@@ -2,13 +2,14 @@ clear; clc; close all
 
 % Agrega funciones en src/ al path de matlab
 addpath(genpath('src/'))
-
-
+addpath(genpath('simple-MRI/'))
+addpath(genpath('src/'))
+addpath(genpath('mtimesx_20110223/'))
 % Gyromagnetic constant
 gamma = 42.58;   % MHz/T
 
 
-%% GeneraciÃ³n del fantoma
+%% Generación del fantoma
 % Dominio de la imagen
 Isz = [64 64];
 [X, Y] = meshgrid(linspace(-1,1,Isz(2)),linspace(-1,1,Isz(1)));
@@ -26,9 +27,13 @@ end
 
 % Valores T1 y T2 en cada cilindro
 T1 = zeros(Isz);
+T1(:) = 4000;
+
 T2 = zeros(Isz);
-T12 = [4000 1000 1500 850 500 250;
-       1000 200  300  50  20  75];
+T2(:) = 1000;
+
+T12 = [4000 850 500 1000 1500 250;
+       1000  50  20 200  300  75];
 for i=1:numel(r)
     T1(C(:,:,i)) = T12(1,i);
     T2(C(:,:,i)) = T12(2,i);
@@ -41,7 +46,7 @@ for i=1:numel(r)
     df(C(:,:,i)) = off(i);
 end
 
-% VerificaciÃ³n
+% Verificación
 figure,
 subplot 131
 imagesc(T1); set(gca,'YDir','normal'); caxis([0 4000])
@@ -54,7 +59,7 @@ imagesc(df); set(gca,'YDir','normal'); caxis([0 20])
 axis off
 
 
-%% ObtenciÃ³n de Mxy
+%% Obtención de Mxy
 % Pulso de inversion
 RF_inv = RF(struct('angle',deg2rad(180.0),'phase',0,'ref_obj','ref'));
 
@@ -88,46 +93,57 @@ Mxy = metadata.Mxy;
 Mz = metadata.Mz;
 
 
-%%
-% Plot images
+%% Compilador
+% Link descarga
+% https://www.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-compiler
+% de ser necesario, explicitar corriendo:
+%
+% mex -setup C++
+% o
+% mex -setup C
+%% Plot images
+
 close all
 for i=1:size(Mxy,3)
+    
     figure(3)
-    tiledlayout(1,2,'Padding','compact','TileSpacing','compact')
-    nexttile
+    
+    subplot 121
     imagesc(abs(Mxy(:,:,i))); caxis([-1 1])
     title('M_{xy}')
     axis equal off
-    nexttile
+    
+    subplot 122
     imagesc(Mz(:,:,i)); caxis([-1 1])
     title('M_{z}')
-    axis equal off
+    axis equal off 
+    
     colormap gray
-    sgtitle(sprintf('Time: %.0f msec',metadata.times(i)))
     drawnow
-%     pause
+    sgtitle(sprintf('Time: %.0f msec',metadata.times(i)))
+    
 end
 
-%%
-% Plot magnetization curves
+%% Plot magnetization curves
+
 figure(4)
 subplot 221
 plot(metadata.times,squeeze(abs(Mxy(25,25,:))),'Linewidth',2); hold on
 plot(metadata.times,squeeze(Mz(25,25,:)),'Linewidth',2); hold off
-title('T1=1500, T2=200')
+title('T1=1000, T2=200')
 legend('M_{xy}','M_z')
 subplot 222
-plot(metadata.times,squeeze(abs(Mxy(75,75,:))),'Linewidth',2); hold on
-plot(metadata.times,squeeze(Mz(75,75,:)),'Linewidth',2); hold off
-title('T1=800, T2=50')
+plot(metadata.times,squeeze(abs(Mxy(40,40,:))),'Linewidth',2); hold on
+plot(metadata.times,squeeze(Mz(40,40,:)),'Linewidth',2); hold off
+title('T1=500, T2=20')
 legend('M_{xy}','M_z')
 subplot 223
-plot(metadata.times,squeeze(abs(Mxy(25,75,:))),'Linewidth',2); hold on
-plot(metadata.times,squeeze(Mz(25,75,:)),'Linewidth',2); hold off
-title('T1=1500, T2=200')
+plot(metadata.times,squeeze(abs(Mxy(25,40,:))),'Linewidth',2); hold on
+plot(metadata.times,squeeze(Mz(25,40,:)),'Linewidth',2); hold off
+title('T1=1500, T2=300')
 legend('M_{xy}','M_z')
 subplot 224
-plot(metadata.times,squeeze(abs(Mxy(75,25,:))),'Linewidth',2); hold on
-plot(metadata.times,squeeze(Mz(75,25,:)),'Linewidth',2); hold off
-title('T1=800, T2=50')
+plot(metadata.times,squeeze(abs(Mxy(40,25,:))),'Linewidth',2); hold on
+plot(metadata.times,squeeze(Mz(40,25,:)),'Linewidth',2); hold off
+title('T1=850, T2=50')
 legend('M_{xy}','M_z')
