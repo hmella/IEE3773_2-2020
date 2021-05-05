@@ -98,7 +98,7 @@ elseif option=='cg'
         if show
             figure(20)
             imagesc(abs(reshape(x0, [m,n])));
-            caxis([0, 0.5])
+%             caxis([0, 0.5])
             axis off equal
             colormap gray
             title(sprintf('iteration %d',i))
